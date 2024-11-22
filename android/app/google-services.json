@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1024164971268",
+    "project_id": "drug-drug",
+    "storage_bucket": "drug-drug.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1024164971268:android:2b482ad6356198ef010651",
+        "android_client_info": {
+          "package_name": "com.example.mini"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1024164971268-h94f3e2vae4rof78tpd0rn105rgkqhoc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAV5itJP5IFrjLkPRI7VcVNQjJVvhp9Yng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1024164971268-h94f3e2vae4rof78tpd0rn105rgkqhoc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
