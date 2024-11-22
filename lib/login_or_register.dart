@@ -26,12 +26,8 @@ class _LoginOrRegisterState extends State<LoginOrRegister>
         duration: const Duration(milliseconds: 300),
         child: showLoginPage
             ? LoginPage(
-          key: const ValueKey('LoginPage'),
-          onTap: togglePage,
         )
             : RegisterPage(
-          key: const ValueKey('RegisterPage'),
-          onTap: togglePage,
         ),
       ),
     );

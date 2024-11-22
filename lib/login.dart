@@ -1,20 +1,14 @@
-// Updated code starts here...
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:judica/advocate_home.dart';
-import 'package:judica/police_home.dart';
-import 'package:judica/user_home.dart';
-import 'package:judica/forgot_password.dart';
-// Ensure this is implemented
-import 'helper/auth_services.dart';
+import 'package:mini/register.dart';
+import 'package:mini/user_home.dart';
+
+import 'auth/auth_services.dart';
+import 'forgot_password.dart';
 
 class LoginPage extends StatefulWidget {
-  final void Function()? onTap;
-
-  const LoginPage({super.key, required this.onTap});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -44,10 +38,9 @@ class _LoginPageState extends State<LoginPage> {
       if (mounted) Navigator.pop(context);
 
       if (userDoc.exists && userDoc.data() != null) {
-        String role = userDoc.get('role') ?? '';
-        _navigateToHome(role);
+        _navigateToHome();
       } else {
-        _displayMessageToUser('User role not found.');
+        _displayMessageToUser('User not found.');
       }
     } catch (e) {
       if (mounted) Navigator.pop(context);
@@ -67,26 +60,11 @@ class _LoginPageState extends State<LoginPage> {
     return true;
   }
 
-  void _navigateToHome(String role) {
-    Widget? homePage;
-    switch (role) {
-      case 'Citizen':
-        homePage = const UserHome();
-        break;
-      case 'Police':
-        homePage = const PoliceHome();
-        break;
-      case 'Advocate':
-        homePage = const AdvocateHome();
-        break;
-      default:
-        _displayMessageToUser('User role not found.');
-        return;
-    }
-
+  void _navigateToHome() {
+    // Navigate to a generic home page for a single user
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => homePage!),
+      MaterialPageRoute(builder: (context) => const UserHome()),  // Replace with actual user home page
     );
   }
 
@@ -279,7 +257,12 @@ class _LoginPageState extends State<LoginPage> {
       children: [
         const Text("Don't have an account? "),
         GestureDetector(
-          onTap: widget.onTap,
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>  RegisterPage()),
+            );
+          },
           child: const Text(
             "Sign Up",
             style: TextStyle(color: Colors.blue),

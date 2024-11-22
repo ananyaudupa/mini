@@ -1,12 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mini/login.dart';
 
 class RegisterPage extends StatefulWidget {
-  final void Function()? onTap;
-
-  const RegisterPage({super.key, required this.onTap});
-
   @override
   State<RegisterPage> createState() => _RegisterPageState();
 }
@@ -16,7 +13,6 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController = TextEditingController();
-  String selectedRole = 'Citizen'; // Default role
   bool isLoading = false;
 
   @override
@@ -80,11 +76,10 @@ class _RegisterPageState extends State<RegisterPage> {
     if (userCredential.user != null) {
       await FirebaseFirestore.instance
           .collection("users")
-          .doc(userCredential.user!.email) // Use user UID as document ID
+          .doc(userCredential.user!.email)
           .set({
         'email': userCredential.user!.email,
         'username': usernameController.text,
-        'role': selectedRole,
       });
     }
   }
@@ -247,38 +242,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   const SizedBox(
                     height: 25,
                   ),
-                  // Role Dropdown
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6),
-                      decoration: BoxDecoration(
-                        borderRadius:  const BorderRadius.only(
-                          topLeft: Radius.circular(12),
-                          bottomRight: Radius.circular(12),
-                        ),
-                        border: Border.all(color: Colors.black)
-                      ),
-                      child: DropdownButton<String>(
-                        value: selectedRole,
-                        isExpanded: true,
-                        underline: const SizedBox(),
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            selectedRole = newValue!;
-                          });
-                        },
-                        items: <String>['Citizen', 'Police', 'Judge']
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 25),
                   // Register Button
                   SizedBox(
                     width: double.infinity,
@@ -298,23 +261,28 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                 ]),
-            SizedBox(height: 5,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  "Don't have an account? ",
-                  style: TextStyle(color: Colors.black),
-                ),
-                GestureDetector(
-                  onTap: widget.onTap,
-                  child: const Text(
-                    "Sign Up",
-                    style: TextStyle(color: Colors.blue),
-                  ),
-                ),
-              ],
-            )
+                SizedBox(height: 5,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Already have an account? ",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                        );
+                      },
+                      child: const Text(
+                        "Sign In",
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           ),

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import 'auth/auth.dart';
 import 'login.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -137,7 +136,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       // "Get Started" Button
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage(onTap: onTap)));
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blueAccent,
