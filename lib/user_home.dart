@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart'; // Import Firestore
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:judica/profile.dart';
-import 'package:judica/slpash_screen.dart';
-import 'FIRpage.dart'; // Import your FIR page
+import 'package:mini/profile.dart';
+import 'package:mini/splash_screen.dart';
+ // Import your FIR page
 
 class UserHome extends StatefulWidget {
   const UserHome({super.key});
@@ -19,8 +19,8 @@ class _UserHomeState extends State<UserHome> {
   // Define the pages for navigation
   static final List<Widget> _pages = <Widget>[
     const Center(child: Text('Home Page Content')), // Placeholder for Home Page
-    const FirComponent(), // FIR-related component
-    const ProfilePage(), // Profile Page
+    const Center(child: Text('PAGE2')), // Placeholder for Home Page
+    const ProfilePage()// Placeholder for Home Page
   ];
 
   // Function to handle tab selection
