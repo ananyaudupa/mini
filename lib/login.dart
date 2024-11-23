@@ -76,6 +76,7 @@ class _LoginPageState extends State<LoginPage> {
       context: context,
       barrierDismissible: false,
       builder: (context) {
+        // ignore: deprecated_member_use
         return WillPopScope(
           onWillPop: () async => false,
           child: Center(

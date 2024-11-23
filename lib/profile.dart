@@ -19,7 +19,6 @@ class _ProfilePageState extends State<ProfilePage> {
   // User fields
   String? userName;
   String? email;
-  String? role;
   String? mobileNumber;
   String? imageUrl;
 
@@ -49,7 +48,6 @@ class _ProfilePageState extends State<ProfilePage> {
           setState(() {
             userName = userDoc.data()?['username'];
             email = userDoc.data()?['email'];
-            role = userDoc.data()?['role'];
             mobileNumber = userDoc.data()?['Mobile Number'];
             imageUrl = userDoc.data()?['imageUrl']; 
           });
@@ -190,7 +188,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 // Email (Read-only)
                 buildReadOnlyField("Email", email),
                 // Role (Read-only)
-                buildReadOnlyField("Role", role),
                 // Mobile Number (Editable)
                 isEditMode
                     ? buildEditableField(
